@@ -26,10 +26,10 @@ namespace Ecomerce.Configurations
             builder.Property(e => e.Active)
                 .IsRequired();
 
-            builder.HasOne(e => e.Department)
-                .WithMany()
-                .HasForeignKey(e => e.DepartmentId)
-                .OnDelete(DeleteBehavior.Restrict);
+            //builder.HasOne(e => e.Department)
+            //    .WithMany()
+            //    .HasForeignKey(e => e.DepartmentId)
+            //    .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

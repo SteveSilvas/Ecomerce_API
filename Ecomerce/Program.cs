@@ -24,21 +24,11 @@ namespace Ecomerce.Context
             {
                 endpoints.MapControllers();
             });
-            //using (var scope = app.Services.CreateScope())
-            //{
-            //    var services = scope.ServiceProvider;
-            //    var context = services.GetRequiredService<DBContext>();
-            //    SeedData(context);
-            //}
 
             app.Run();
         }
         private static void ConfigureInjections(WebApplicationBuilder builder)
         {
-            // services.AddDbContext<DBContext>(
-            //    options => options.UseMySql(builder.Configuration.GetSection("ApiOptions").GetValue<string>("ConnectionString"))
-            //);
-
             //builder.Services.AddDbContext<DBContext>(options => options.UseInMemoryDatabase("InMemoryDB"));
 
             builder.Services.AddDbContext<DBContext>(options =>
@@ -58,23 +48,14 @@ namespace Ecomerce.Context
         }
         private static void ConfigureServices(IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(Program));
+            services.AddAutoMapper(typeof(MappingProfile));
 
             services.AddScoped<IEmployeeService, EmployeeService>();
-
-
 
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
         }
-
-        //private static void SeedData(DBContext context)
-        //{
-        // Add some data to the context if needed
-        // e.g., context.Employees.Add(new Employee { ... });
-        // context.SaveChanges();
-        //}
     }
 }
 

@@ -10,7 +10,6 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.Admission, opt => opt.MapFrom(src => src.Admission.ToString("yyyy-MM-ddTHH:mm:ss.fffZ")))
             .ForMember(dest => dest.Resignation, opt => opt.MapFrom(src => src.Resignation.ToString("yyyy-MM-ddTHH:mm:ss.fffZ")));
 
-
-
+        CreateMap<EmployeeDTO, Employee>();
     }
 }
