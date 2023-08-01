@@ -23,25 +23,31 @@ namespace Ecomerce.Controllers
             return  _employeeService.GetAll();
         }
 
+        [HttpGet]
+        public ResultDTO<Employee> GetByID(int employeeId)
+        {
+            return _employeeService.GetById(employeeId);
+        }
+
         [HttpPost]
-        public ActionResult AddEmployee(Employee employee)
+        public ActionResult AddEmployee(EmployeeDTO employee)
         {
             var result = _employeeService.Insert(employee);
-            return result.ResultCode == 0 ? (ActionResult)Ok() : BadRequest();
+            return result.ResultCode == 0 ? (ActionResult)Ok("Employee Criado com sucesso.") : BadRequest();
         }
 
-        [HttpPost]
-        public ActionResult EditEmployee(Employee employee)
+        [HttpPut]
+        public ActionResult EditEmployee(EmployeeDTO employee)
         {
             var result = _employeeService.Update(employee);
-            return result.ResultCode == 0 ? (ActionResult)Ok() : BadRequest();
+            return result.ResultCode == 0 ? (ActionResult)Ok("Employee Alterado com sucesso.") : BadRequest();
         }
 
-        [HttpPost]
+        [HttpDelete]
         public ActionResult Delete(int employeeId)
         {
             var result = _employeeService.Delete(employeeId);
-            return result.ResultCode == 0 ? (ActionResult)Ok() : NotFound();
+            return result.ResultCode == 0 ? (ActionResult)Ok("Registro removido com sucesso.") : NotFound("Não encontrado.");
         }
     }
 }

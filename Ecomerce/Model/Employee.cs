@@ -1,13 +1,16 @@
-﻿using System.Globalization;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 
 namespace Ecomerce.Model
 {
-    public class Employee
+    public class Employee : User
     {
-        public int Id { get; set; }
-        public string? Name { get; set; }
-        public string Sexo { get; set; }
         public decimal Salario { get; set; }
-        public string? Department { get; set; }  
+        public DateTime Admission { get; set; }
+        public DateTime Resignation { get; set; }
+        public bool Active { get; set; } = true;
+        public int DepartmentId { get; set; }
+        public Department Department { get; set; }
     }
 }

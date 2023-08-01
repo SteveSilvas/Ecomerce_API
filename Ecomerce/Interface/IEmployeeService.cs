@@ -7,10 +7,10 @@ namespace Ecomerce.Interface
     public interface IEmployeeService
     {
         ResultDTO<IEnumerable<Employee>> GetAll();
-        ResultDTO<Employee> GetById(int EmployeeID);
-        ResponseDTO Insert(Employee employee);
-        ResponseDTO Update(Employee employee);
-        ResponseDTO Delete(int EmployeeID);
+        ResultDTO<Employee> GetById(int EmployeeId);
+        ResponseDTO Insert(EmployeeDTO employee);
+        ResponseDTO Update(EmployeeDTO employee);
+        ResponseDTO Delete(int EmployeeId);
         ResponseDTO Save();
     }
 }

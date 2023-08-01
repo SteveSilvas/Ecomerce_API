@@ -1,4 +1,5 @@
-﻿using Ecomerce.DTO;
+﻿using AutoMapper;
+using Ecomerce.DTO;
 using Ecomerce.Interface;
 using Ecomerce.Model;
 using System.Collections.Generic;
@@ -8,10 +9,11 @@ namespace Ecomerce.Services
     public class EmployeeService : IEmployeeService
     {
         private readonly IEmployeeRepository _iEmployeeRepository;
-
-        public EmployeeService(IEmployeeRepository iEmployeeRepository)
+        private readonly IMapper _mapper;
+        public EmployeeService(IEmployeeRepository iEmployeeRepository, IMapper mapper)
         {
             _iEmployeeRepository = iEmployeeRepository;
+            _mapper = mapper;
         }
 
         public ResultDTO<IEnumerable<Employee>> GetAll()
@@ -36,21 +38,39 @@ namespace Ecomerce.Services
             }
             else
             {
-                return new ResultDTO<Employee>(1,"Employee not found.", null);
+                return new ResultDTO<Employee>(1, "Employee not found.", null);
             }
         }
 
-        public ResponseDTO Insert(Employee employee)
+
+        public ResponseDTO Insert(EmployeeDTO employeeDTO)
         {
-            _iEmployeeRepository.Insert(employee);
-            return new ResponseDTO(0, "Sucesso.");
+            try
+            {
+                Employee employee = _mapper.Map<Employee>(employeeDTO);
+                _iEmployeeRepository.Insert(employee);
+                return new ResponseDTO(0, "Sucesso.");
+            }
+            catch (Exception ex)
+            {
+                return new ResponseDTO(1, "Erro ao inserir Employee.");
+            }
         }
 
-        public ResponseDTO Update(Employee employee)
+        public ResponseDTO Update(EmployeeDTO employeeDTO)
         {
-            _iEmployeeRepository.Update(employee);
-            return new ResponseDTO(0, "Sucesso.");
+            try
+            {
+                Employee employee = _mapper.Map<Employee>(employeeDTO);
+                _iEmployeeRepository.Update(employee);
+                return new ResponseDTO(0, "Sucesso.");
+            }
+            catch (Exception ex)
+            {
+                return new ResponseDTO(1, "Erro ao atualizar Employee.");
+            }
         }
+
 
         public ResponseDTO Delete(int employeeId)
         {
@@ -73,7 +93,8 @@ namespace Ecomerce.Services
                 _iEmployeeRepository.Save();
                 return new ResponseDTO(0, "Sucesso.");
             }
-            catch {
+            catch
+            {
                 return new ResponseDTO(1, "Erro.");
             }
         }

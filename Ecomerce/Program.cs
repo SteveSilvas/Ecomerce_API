@@ -58,7 +58,11 @@ namespace Ecomerce.Context
         }
         private static void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(Program));
+
             services.AddScoped<IEmployeeService, EmployeeService>();
+
+
 
             services.AddControllers();
             services.AddEndpointsApiExplorer();

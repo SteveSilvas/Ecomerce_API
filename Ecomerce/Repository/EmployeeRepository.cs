@@ -22,27 +22,38 @@ namespace Ecomerce.Repository
             return _context.Employees.ToList();
         }
 
-        public Employee GetById(int EmployeeID)
+        public Employee GetById(int employeeId)
         {
-            return _context.Employees.FirstOrDefault(e => e.Id == EmployeeID);
+            try
+            {
+                return _context.Employees.Find(employeeId);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         public void Insert(Employee employee)
         {
             _context.Employees.Add(employee);
+            Save();
         }
 
         public void Update(Employee employee)
         {
-            //_context.Entry(employee).State = EntityState.Modified;
+            _context.Employees.Update(employee);
+            Save();
         }
 
-        public void Delete(int EmployeeID)
+        public void Delete(int employeeId)
         {
-            Employee employee = _context.Employees.Find(EmployeeID);
+            Employee employee = GetById(employeeId);
+
             if (employee != null)
             {
                 _context.Employees.Remove(employee);
+                Save();
             }
             else
             {
