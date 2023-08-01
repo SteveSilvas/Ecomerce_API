@@ -44,12 +44,17 @@ namespace Ecomerce.Context
         }
         private static void ConfigureRepositories(IServiceCollection services)
         {
+            services.AddTransient<IAddressCityRepository, AddressCityRepository>();
+            services.AddTransient<IAddressStateRepository, AddressStateRepository>();
+            services.AddTransient<IDepartmentRepository, DepartmentRepository>();
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
         }
         private static void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(MappingProfile));
-
+            services.AddScoped<IAddressCityService, AddressCityService>();
+            services.AddScoped<IAddressStateService, AddressStateService>();
+            services.AddScoped<IDepartmentService, DepartmentService>();
             services.AddScoped<IEmployeeService, EmployeeService>();
 
             services.AddControllers();
