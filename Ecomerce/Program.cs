@@ -44,6 +44,7 @@ namespace Ecomerce.Context
         }
         private static void ConfigureRepositories(IServiceCollection services)
         {
+            services.AddTransient<IAddressRepository, AddressRepository>();
             services.AddTransient<IAddressCityRepository, AddressCityRepository>();
             services.AddTransient<IAddressStateRepository, AddressStateRepository>();
             services.AddTransient<IDepartmentRepository, DepartmentRepository>();
@@ -52,6 +53,8 @@ namespace Ecomerce.Context
         private static void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(MappingProfile));
+
+            services.AddScoped<IAddressService, AddressService>();
             services.AddScoped<IAddressCityService, AddressCityService>();
             services.AddScoped<IAddressStateService, AddressStateService>();
             services.AddScoped<IDepartmentService, DepartmentService>();

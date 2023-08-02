@@ -6,6 +6,8 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
+        CreateMap<Address, AddressDTO>();
+        CreateMap<AddressDTO, Address>();
         CreateMap<Department, DepartmentDTO>();
         CreateMap<DepartmentDTO, Department>();
 

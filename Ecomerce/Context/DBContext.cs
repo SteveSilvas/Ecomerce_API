@@ -23,9 +23,6 @@ namespace Ecomerce.Context
             modelBuilder.ApplyConfiguration(new AddressStateConfiguration());
             modelBuilder.ApplyConfiguration(new DepartmentConfiguration());
             modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
-
-            modelBuilder.Entity<AddressCity>().ToTable("AddressCities");
-            modelBuilder.Entity<AddressState>().ToTable("AddressStates");
         }
     }
 }
