@@ -6,10 +6,10 @@ namespace Ecomerce.Interface
 {
     public interface IAddressService
     {
-        ResultDTO<IEnumerable<Address>> GetAll();
-        ResultDTO<Address> GetById(int addressId);
-        ResponseDTO Insert(Address address);
-        ResponseDTO Update(Address address);
+        ResultDTO<IEnumerable<AddressDTO>> GetAll();
+        ResultDTO<AddressDTO> GetById(int addressId);
+        ResponseDTO Insert(AddressDTO address);
+        ResponseDTO Update(AddressDTO address);
         ResponseDTO Delete(int addressId);
         void Save();
     }

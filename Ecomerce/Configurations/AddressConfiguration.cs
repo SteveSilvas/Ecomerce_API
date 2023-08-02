@@ -8,7 +8,7 @@ namespace Ecomerce.Configurations
     {
         public void Configure(EntityTypeBuilder<Address> builder)
         {
-            builder.ToTable("Addresses");
+            builder.ToTable("Address");
 
             builder.HasKey(a => a.Id);
 
@@ -19,6 +19,10 @@ namespace Ecomerce.Configurations
             builder.Property(a => a.Street)
                 .HasColumnName("Street")
                 .IsRequired();
+
+            builder.Property(a => a.Number)
+             .HasColumnName("Number")
+             .IsRequired();
 
             builder.Property(a => a.Complement)
                 .HasColumnName("Complement");

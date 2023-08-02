@@ -8,46 +8,49 @@ namespace Ecomerce.Services
 {
     public class AddressService : IAddressService
     {
-        private readonly IAddressRepository _iAdressRepository;
+        private readonly IAddressRepository _iAddressRepository;
         private readonly IMapper _mapper;
-        public AddressService(IAddressRepository iAdressRepository, IMapper mapper)
+        public AddressService(IAddressRepository iAddressRepository, IMapper mapper)
         {
-            _iAdressRepository = iAdressRepository;
+            _iAddressRepository = iAddressRepository;
             _mapper = mapper;
         }
 
-        public ResultDTO<IEnumerable<Address>> GetAll()
+        public ResultDTO<IEnumerable<AddressDTO>> GetAll()
         {
-            IEnumerable<Address> adresses = _iAdressRepository.GetAll();
-            if (adresses != null)
+            IEnumerable<Address> addresses = _iAddressRepository.GetAll();
+            IEnumerable<AddressDTO> addressesDtos = _mapper.Map<IEnumerable<AddressDTO>>(addresses);
+            if (addressesDtos != null)
             {
-                return new ResultDTO<IEnumerable<Address>>(0, "Sucesso.", adresses);
+                return new ResultDTO<IEnumerable<AddressDTO>>(0, "Sucesso.", addressesDtos);
             }
             else
             {
-                return new ResultDTO<IEnumerable<Address>>(1, "Endereços não encontrados.", null);
+                return new ResultDTO<IEnumerable<AddressDTO>>(1, "Endereços não encontrados.", null);
             }
         }
 
-        public ResultDTO<Address> GetById(int addressId)
+        public ResultDTO<AddressDTO> GetById(int addressId)
         {
-            Address address = _iAdressRepository.GetById(addressId);
-            if (address != null)
+            Address address = _iAddressRepository.GetById(addressId);
+            AddressDTO addressesDtos = _mapper.Map<AddressDTO>(address);
+            if (addressesDtos != null)
             {
-                return new ResultDTO<Address>(0, "Sucesso.", address);
+                return new ResultDTO<AddressDTO>(0, "Sucesso.", addressesDtos);
             }
             else
             {
-                return new ResultDTO<Address>(1, "Endereço não encontrado.", null);
+                return new ResultDTO<AddressDTO>(1, "Endereço não encontrado.", null);
             }
         }
 
 
-        public ResponseDTO Insert(Address address)
+        public ResponseDTO Insert(AddressDTO addressDTO)
         {
             try
             {
-                _iAdressRepository.Insert(address);
+                Address address = _mapper.Map<Address>(addressDTO);
+                _iAddressRepository.Insert(address);
                 return new ResponseDTO(0, "Endereço cadastrado com Sucesso.");
             }
             catch (Exception ex)
@@ -56,11 +59,12 @@ namespace Ecomerce.Services
             }
         }
 
-        public ResponseDTO Update(Address address)
+        public ResponseDTO Update(AddressDTO addressDTO)
         {
             try
             {
-                _iAdressRepository.Update(address);
+                Address address = _mapper.Map<Address>(addressDTO);
+                _iAddressRepository.Update(address);
                 return new ResponseDTO(0, "Endereço alterado com Sucesso.");
             }
             catch (Exception ex)
@@ -72,10 +76,10 @@ namespace Ecomerce.Services
 
         public ResponseDTO Delete(int addressId)
         {
-            var address = _iAdressRepository.GetById(addressId);
+            Address address = _iAddressRepository.GetById(addressId);
             if (address != null)
             {
-                _iAdressRepository.Delete(addressId);
+                _iAddressRepository.Delete(addressId);
                 return new ResponseDTO(0, "Sucesso.");
             }
             else
@@ -86,7 +90,7 @@ namespace Ecomerce.Services
 
         public void Save()
         {
-            _iAdressRepository.Save();
+            _iAddressRepository.Save();
         }
     }
 }

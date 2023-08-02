@@ -17,26 +17,26 @@ namespace Ecomerce.Controllers
         }
 
         [HttpGet]
-        public ResultDTO<IEnumerable<Address>> GetAllAddresses()
+        public ResultDTO<IEnumerable<AddressDTO>> GetAllAddresses()
         {
             return _iAddressService.GetAll();
         }
 
         [HttpGet]
-        public ResultDTO<Address> GetAddressById(int Id)
+        public ResultDTO<AddressDTO> GetAddressById(int Id)
         {
             return _iAddressService.GetById(Id);
         }
 
         [HttpPost]
-        public ActionResult AddAddress(Address address)
-        {
+        public ActionResult AddAddress(AddressDTO address)
+            {
             var result = _iAddressService.Insert(address);
             return result.ResultCode == 0 ? (ActionResult)Ok("Endereço registrado com sucesso.") : BadRequest();
         }
 
         [HttpPut]
-        public ActionResult EditAddress(Address address)
+        public ActionResult EditAddress(AddressDTO address)
         {
             var result = _iAddressService.Update(address);
             return result.ResultCode == 0 ? (ActionResult)Ok("Endereço Alterado com sucesso.") : BadRequest();
