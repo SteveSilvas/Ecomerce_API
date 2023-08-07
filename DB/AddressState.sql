@@ -3,18 +3,6 @@ CREATE TABLE AddressState (
     Description VARCHAR(100) NOT NULL
 );
 
--- INSERT INTO AddressState (Description) VALUES
--- ('State 1'),
--- ('State 2'),
--- ('State 3'),
--- ('State 4'),
--- ('State 5'),
--- ('State 6'),
--- ('State 7'),
--- ('State 8'),
--- ('State 9'),
--- ('State 10');
-
 INSERT INTO
     AddressState (Description)
 VALUES

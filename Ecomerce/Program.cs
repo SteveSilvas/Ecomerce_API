@@ -2,6 +2,7 @@ using Ecomerce.Interface;
 using Ecomerce.Repository;
 using Ecomerce.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using Pomelo.EntityFrameworkCore.MySql;
 
 
@@ -62,7 +63,20 @@ namespace Ecomerce.Context
 
             services.AddControllers();
             services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Ecomerce",
+                    Description = "Application of services and product transactions with integrated ERP",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Steve Silva",
+                        Url = new Uri("https://github.com/SteveSilvas")
+                    },
+                });
+            });
         }
     }
 }

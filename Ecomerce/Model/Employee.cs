@@ -8,7 +8,7 @@ namespace Ecomerce.Model
     {
         public decimal Salario { get; set; }
         public DateTime Admission { get; set; }
-        public DateTime Resignation { get; set; }
+        public DateTime? Resignation { get; set; }
         public bool Active { get; set; } = true;
         public int DepartmentId { get; set; }
         public Department Department { get; set; }
