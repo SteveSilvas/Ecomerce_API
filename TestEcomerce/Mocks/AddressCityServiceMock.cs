@@ -28,13 +28,13 @@ namespace TestEcomerce.Mocks
                 service.GetById(It.IsAny<int>())).Returns(new ResultDTO<AddressCity>(0, "Success.", address));
 
             serviceMock.Setup(service => 
-                service.Insert(It.IsAny<AddressCity>())).Returns(new ResponseDTO(0, "Cidade cadastrada com Sucesso."));
+                service.Insert(It.IsAny<AddressCity>())).Returns(new ResponseDTO(0, "Cidade cadastrada com sucesso."));
 
             serviceMock.Setup(service => 
-             service.Update(It.IsAny<AddressCity>())).Returns(new ResponseDTO(0, "Cidade alterada com Sucesso."));
+             service.Update(It.IsAny<AddressCity>())).Returns(new ResponseDTO(0, "Cidade alterada com sucesso."));
 
             serviceMock.Setup(service => 
-                service.Delete(It.IsAny<int>())).Returns(new ResponseDTO(0, "Sucesso."));
+                service.Delete(It.IsAny<int>())).Returns(new ResponseDTO(0, "Cidade excluída com sucesso."));
 
             return serviceMock.Object;
         }

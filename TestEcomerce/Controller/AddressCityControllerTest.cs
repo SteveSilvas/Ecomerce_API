@@ -38,5 +38,20 @@ namespace TestEcomerce.Controller
             Assert.AreEqual(expected.ResultMessage, actual.ResultMessage);
             Assert.AreEqual(expected.Data, actual.Data);
         }
+
+        [Test]
+        public void GetCityById_ReturnOneCityById()
+        {
+            ResultDTO<AddressCity> expected = new ResultDTO<AddressCity>(0, "Success.",AddressCityMock.GetCity(2));
+
+            ResultDTO<AddressCity> resultController = _controller.GetCityById(2);
+
+            Assert.AreEqual(expected.ResultCode, resultController.ResultCode);
+            Assert.AreEqual(expected.ResultMessage, resultController.ResultMessage);
+            //Assert.That(resultController.Data, Is.EqualTo(expected.Data));
+
+        }
+
+
     }
 }
