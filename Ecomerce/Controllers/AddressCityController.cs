@@ -29,24 +29,21 @@ namespace Ecomerce.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddCity(AddressCity city)
+        public ResponseDTO AddCity(AddressCity city)
         {
-            var result = _iAddressCityService.Insert(city);
-            return result.ResultCode == 0 ? (ActionResult)Ok("Cidade registrada com sucesso.") : BadRequest();
+            return _iAddressCityService.Insert(city);
         }
 
         [HttpPut]
-        public ActionResult EditCity(AddressCity city)
+        public ResponseDTO EditCity(AddressCity city)
         {
-            var result = _iAddressCityService.Update(city);
-            return result.ResultCode == 0 ? (ActionResult)Ok("Cidade Alterada com sucesso.") : BadRequest();
+            return _iAddressCityService.Update(city);
         }
 
         [HttpDelete]
-        public ActionResult DeleteCity(int cityId)
+        public ResponseDTO DeleteCity(int cityId)
         {
-            var result = _iAddressCityService.Delete(cityId);
-            return result.ResultCode == 0 ? (ActionResult)Ok("Registro removido com sucesso.") : NotFound("Não encontrado.");
+            return _iAddressCityService.Delete(cityId);
         }
     }
 }
