@@ -14,5 +14,18 @@ VALUES
     ('Escritório'),
     ('Roupas'),
     ('Alimentos'),
-    ('Artes')
-    ('Automóveis');
+    ('Artes') ('Automóveis');
+
+INSERT INTO
+    ProductCategory (Description)
+VALUES
+    ('Smartphones'),
+    ('Laptops e Computadores'),
+    ('Áudio e Fones de Ouvido'),
+    ('TVs e Home Theater'),
+    ('Câmeras e Fotografia'),
+    ('Eletrodomésticos'),
+    ('Gaming'),
+    ('Acessórios Eletrônicos'),
+    ('Wearables'),
+    ('Produtos Inteligentes');

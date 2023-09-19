@@ -7,6 +7,7 @@ using Ecomerce.Controllers;
 using Ecomerce.DTO;
 using Ecomerce.Interface;
 using Ecomerce.Model;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 using TestEcomerce.Mocks;
 
@@ -52,6 +53,20 @@ namespace TestEcomerce.Controller
 
         }
 
+        [Test]
+        public void Insert_CityInsertedSuccessfully_ReturnsSuccessResponse()
+        {
+            // Arrange
+            var city = AddressCityMock.GetCity(3);
 
+            //_repositoryMock.Setup(repo => repo.Insert(city));
+
+            //// Act
+            //ActionResult result = _controller.AddCity(city);
+
+            //// Assert
+            //Assert.AreEqual(0, result.);
+            //Assert.AreEqual("Cidade cadastrada com Sucesso.", result.ResultMessage);
+        }
     }
 }
